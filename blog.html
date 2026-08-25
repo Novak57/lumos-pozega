@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog · Lumos Požega</title>
+    <meta
+      name="description"
+      content="Razmišljanja Josipe Šumige o psihoterapiji, odnosima i mentalnom zdravlju. Lumos Požega."
+    />
+    <meta name="theme-color" content="#16382C" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Sora:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true"></div>
+
+    <header class="header" id="nav">
+      <a class="brand" href="index.html" aria-label="Lumos Požega">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 40 48" fill="none">
+            <path d="M20 3.2C10.4 3.2 3 11 3 21.2c0 7.4 4.1 12.4 8.6 16.2.9.8 1.5 1.9 1.5 3.1v1.7h13.8v-1.7c0-1.2.6-2.3 1.5-3.1C32.9 33.6 37 28.6 37 21.2 37 11 29.6 3.2 20 3.2Z" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M13.2 44.2h13.6M15 47.2h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M20 33.4v-9.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M20 26.2c-3.8-1.7-5.9-5-6.1-8.6 2.8.5 5.2 1.9 6.1 4.1.9-2.2 3.3-3.6 6.1-4.1-.2 3.6-2.3 6.9-6.1 8.6Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="brand__word">Lumos</span>
+      </a>
+      <nav class="header__nav" aria-label="Glavna navigacija">
+        <a href="index.html#o-meni">O meni</a>
+        <a href="index.html#pristup">Pristup</a>
+        <a href="index.html#usluge">Usluge</a>
+        <a href="index.html#cjenik">Cjenik</a>
+        <a href="blog.html" aria-current="page">Blog</a>
+        <a href="index.html#kontakt">Kontakt</a>
+      </nav>
+      <div class="header__right">
+        <a class="btn btn--small" href="https://www.instagram.com/lumospozega/" target="_blank" rel="noopener">Napiši mi</a>
+        <button class="burger" type="button" aria-label="Izbornik" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="menu" id="drawer" hidden>
+      <a href="index.html#o-meni">O meni</a>
+      <a href="index.html#pristup">Pristup</a>
+      <a href="index.html#usluge">Usluge</a>
+      <a href="index.html#cjenik">Cjenik</a>
+      <a href="blog.html" aria-current="page">Blog</a>
+      <a href="index.html#kontakt">Kontakt</a>
+      <a class="btn" href="https://www.instagram.com/lumospozega/" target="_blank" rel="noopener">Instagram · lumospozega</a>
+    </div>
+
+    <main>
+      <section class="page-head">
+        <div class="wrap reveal">
+          <p class="eyebrow">Blog</p>
+          <h1>Razmišljanja kojima razbijam stigmu.</h1>
+          <p>
+            Kratki tekstovi o odnosima, odgovornosti i mentalnom zdravlju.
+          </p>
+        </div>
+      </section>
+
+      <section class="articles">
+        <div class="wrap articles__grid">
+          <nav class="blog-nav reveal" aria-label="Zapisi na blogu">
+            <p class="eyebrow">Zapisi</p>
+            <ol id="blog-nav-list"></ol>
+          </nav>
+
+          <div>
+            <p id="blog-status" class="blog-status" hidden></p>
+            <div class="articles__list" id="articles-list"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer__grid">
+        <a class="brand" href="index.html">
+          <span class="brand__word">Lumos Požega</span>
+        </a>
+        <p>© <span id="year">2026</span> Josipa Šumiga. Psihoterapija, savjetovanje, edukacija.</p>
+      </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/sanity.js"></script>
+    <script src="js/portable-text.js"></script>
+    <script src="js/blog-page.js"></script>
+  </body>
+</html>
