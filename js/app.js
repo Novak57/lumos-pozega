@@ -87,15 +87,16 @@
 
     const observeArticles = () => {
       document.querySelectorAll(".article[id]").forEach((article) => spy.observe(article));
-      const initial = location.hash.replace("#", "");
+      const initial = location.hash.replace("#", "") || document.querySelector(".article[id]")?.id;
       if (initial) setActiveBlogLink(initial);
     };
 
-    const articlesRoot = document.getElementById("articles-list");
+    observeArticles();
+
+    const articlesRoot = document.querySelector(".articles__list");
     if (articlesRoot) {
       const mo = new MutationObserver(() => observeArticles());
       mo.observe(articlesRoot, { childList: true });
-      observeArticles();
     }
   }
 })();

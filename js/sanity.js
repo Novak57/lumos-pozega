@@ -1,4 +1,7 @@
 window.LumosSanity = {
+  // true = blog vuče sadržaj iz Sanityja
+  // false = koristi hardkodirane tekstove u HTML-u
+  enabled: false,
   projectId: "7b3vlfno",
   dataset: "production",
   apiVersion: "2025-01-01",
@@ -10,6 +13,10 @@ window.LumosSanity.queryUrl = function queryUrl(groq) {
 };
 
 window.LumosSanity.fetchQuery = async function fetchQuery(groq) {
+  if (!this.enabled) {
+    throw new Error("Sanity je privremeno isključen.");
+  }
+
   if (location.protocol === "file:") {
     throw new Error(
       "FILE_PROTOCOL: Stranicu treba otvoriti preko lokalnog servera ili GitHub Pages, ne dvostrukim klikom na HTML."
