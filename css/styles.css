@@ -654,6 +654,10 @@ svg {
   margin-bottom: 2.1rem;
 }
 
+.blog-more {
+  margin: 1.6rem 0 0;
+}
+
 .cards,
 .posts {
   display: grid;
@@ -840,6 +844,8 @@ a.post {
 }
 
 .article__pager {
+  display: grid;
+  gap: 1rem;
   margin-top: 2rem;
 }
 
