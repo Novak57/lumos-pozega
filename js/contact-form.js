@@ -44,8 +44,8 @@
             email: data.email,
             message: data.message,
             _replyto: data.email,
-            _subject: "Upit s web stranice Lumos Požega",
-            _template: "table",
+            _subject: `Upit s weba · ${data.name}`.trim(),
+            _template: "basic",
             _captcha: "false",
           }),
         }
