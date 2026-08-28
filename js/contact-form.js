@@ -9,14 +9,11 @@
     status.className = `contact-form__status contact-form__status--${type}`;
   };
 
-  const isFormSubmitSuccess = (result) =>
-    result?.success === true || result?.success === "true";
-
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const recipient = window.LumosContact?.email?.trim();
-    if (!recipient) {
+    const accessKey = window.LumosContact?.accessKey?.trim();
+    if (!accessKey) {
       setStatus(
         "Kontakt forma trenutno nije aktivna. Javite se putem Instagrama.",
         "error"
@@ -31,36 +28,33 @@
     const data = Object.fromEntries(new FormData(form));
 
     try {
-      const response = await fetch(
-        `https://formsubmit.co/ajax/${encodeURIComponent(recipient)}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            name: data.name,
-            email: data.email,
-            message: data.message,
-            _replyto: data.email,
-            _subject: `Upit s weba · ${data.name}`.trim(),
-            _template: "basic",
-            _captcha: "false",
-          }),
-        }
-      );
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: data.name,
+          email: data.email,
+          message: data.message,
+          subject: `Upit s weba · ${data.name}`.trim(),
+          from_name: "Lumos Požega",
+          botcheck: false,
+        }),
+      });
 
       const result = await response.json();
 
-      if (response.ok && isFormSubmitSuccess(result)) {
+      if (response.ok && result.success) {
         form.reset();
         setStatus(
           "Poruka je poslana. Odgovorit ću vam u najkraćem mogućem roku.",
           "success"
         );
       } else {
-        throw new Error(result?.message || "Slanje nije uspjelo.");
+        throw new Error(result.message || "Slanje nije uspjelo.");
       }
     } catch {
       setStatus(
