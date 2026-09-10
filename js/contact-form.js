@@ -15,7 +15,7 @@
     const accessKey = window.LumosContact?.accessKey?.trim();
     if (!accessKey) {
       setStatus(
-        "Kontakt forma trenutno nije aktivna. Javite se putem Instagrama.",
+        "Kontakt forma trenutno nije aktivna. Javite se na WhatsApp ili pokušajte kasnije.",
         "error"
       );
       return;
@@ -58,7 +58,7 @@
       }
     } catch {
       setStatus(
-        "Poruka nije poslana. Pokušajte ponovno ili me kontaktirajte putem Instagrama.",
+        "Poruka nije poslana. Pokušajte ponovno ili mi pišite na WhatsApp.",
         "error"
       );
     } finally {

@@ -99,4 +99,108 @@
       mo.observe(articlesRoot, { childList: true });
     }
   }
+
+  const fan = document.querySelector(".hero__fan");
+  if (fan) {
+    const mobileFan = window.matchMedia("(max-width: 899px)");
+
+    const openFan = () => {
+      if (!mobileFan.matches) {
+        fan.classList.remove("is-open");
+        return;
+      }
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => fan.classList.add("is-open"));
+      });
+    };
+
+    if ("IntersectionObserver" in window) {
+      const fanWatch = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) openFan();
+          });
+        },
+        { threshold: 0.4 }
+      );
+      fanWatch.observe(fan);
+    } else {
+      openFan();
+    }
+
+    mobileFan.addEventListener("change", () => {
+      if (!mobileFan.matches) fan.classList.remove("is-open");
+    });
+
+    const cards = [...fan.querySelectorAll(".hero__card")];
+    let settling = false;
+    let settleTimer = 0;
+
+    const clearFront = () => {
+      const front = cards.find((card) => card.classList.contains("is-front"));
+      const wasOpen = fan.classList.contains("is-peeking") || Boolean(front);
+
+      fan.classList.remove("is-peeking");
+      cards.forEach((card) => {
+        card.classList.remove("is-front", "is-returning");
+        card.setAttribute("aria-current", "false");
+      });
+
+      if (!wasOpen) return;
+
+      if (front) {
+        front.classList.add("is-returning");
+        window.setTimeout(() => {
+          front.classList.remove("is-returning");
+        }, 220);
+      }
+
+      settling = true;
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(() => {
+        settling = false;
+      }, 500);
+    };
+
+    const setFront = (index) => {
+      if (settling) return;
+      fan.classList.add("is-peeking");
+      cards.forEach((card, i) => {
+        const active = i === index;
+        card.classList.toggle("is-front", active);
+        card.setAttribute("aria-current", active ? "true" : "false");
+      });
+    };
+
+    cards.forEach((card, i) => {
+      card.setAttribute("tabindex", "0");
+      card.setAttribute("role", "button");
+      card.setAttribute("aria-label", `Povećaj sliku ${i + 1} od ${cards.length}`);
+      card.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        if (settling || fan.classList.contains("is-peeking")) return;
+        setFront(i);
+      });
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          if (settling || fan.classList.contains("is-peeking")) clearFront();
+          else setFront(i);
+        }
+      });
+    });
+
+    document.addEventListener(
+      "pointerdown",
+      () => {
+        if (fan.classList.contains("is-peeking")) clearFront();
+      },
+      true
+    );
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") clearFront();
+    });
+  }
 })();

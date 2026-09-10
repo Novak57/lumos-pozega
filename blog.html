@@ -8,12 +8,67 @@
       name="description"
       content="Razmišljanja Josipe Šumige o psihoterapiji, odnosima i mentalnom zdravlju. Lumos Požega."
     />
-    <meta name="theme-color" content="#16382C" />
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <meta name="author" content="Josipa Šumiga" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://novak57.github.io/lumos-pozega/blog.html" />
+    <meta property="og:locale" content="hr_HR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Lumos Požega" />
+    <meta property="og:title" content="Blog · Lumos Požega" />
+    <meta
+      property="og:description"
+      content="Razmišljanja Josipe Šumige o psihoterapiji, odnosima i mentalnom zdravlju."
+    />
+    <meta property="og:url" content="https://novak57.github.io/lumos-pozega/blog.html" />
+    <meta property="og:image" content="https://novak57.github.io/lumos-pozega/img/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Josipa Šumiga, Lumos Požega" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Blog · Lumos Požega" />
+    <meta
+      name="twitter:description"
+      content="Razmišljanja o psihoterapiji, odnosima i mentalnom zdravlju."
+    />
+    <meta name="twitter:image" content="https://novak57.github.io/lumos-pozega/img/og.jpg" />
+    <meta name="theme-color" content="#001d37" />
+    <link rel="icon" href="img/favicon.png" type="image/png" sizes="48x48" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Blog · Lumos Požega",
+        "url": "https://novak57.github.io/lumos-pozega/blog.html",
+        "inLanguage": "hr",
+        "author": {
+          "@type": "Person",
+          "name": "Josipa Šumiga"
+        },
+        "blogPost": [
+          {
+            "@type": "BlogPosting",
+            "headline": "Partnerska terapija nije sudnica",
+            "url": "https://novak57.github.io/lumos-pozega/blog.html#odnos"
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "Što zapravo znači pobijediti u raspravi s partnerom?",
+            "url": "https://novak57.github.io/lumos-pozega/blog.html#rasprava"
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "Asocijativne karte",
+            "url": "https://novak57.github.io/lumos-pozega/blog.html#karte"
+          }
+        ]
+      }
+    </script>
+    <link rel="preload" as="image" href="img/logo-icon.webp" type="image/webp" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Sora:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700&family=Montserrat:ital,wght@0,400;0,500;1,400&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
@@ -23,14 +78,7 @@
 
     <header class="header" id="nav">
       <a class="brand" href="index.html" aria-label="Lumos Požega">
-        <span class="brand__mark" aria-hidden="true">
-          <svg viewBox="0 0 40 48" fill="none">
-            <path d="M20 3.2C10.4 3.2 3 11 3 21.2c0 7.4 4.1 12.4 8.6 16.2.9.8 1.5 1.9 1.5 3.1v1.7h13.8v-1.7c0-1.2.6-2.3 1.5-3.1C32.9 33.6 37 28.6 37 21.2 37 11 29.6 3.2 20 3.2Z" stroke="currentColor" stroke-width="1.8"/>
-            <path d="M13.2 44.2h13.6M15 47.2h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M20 33.4v-9.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M20 26.2c-3.8-1.7-5.9-5-6.1-8.6 2.8.5 5.2 1.9 6.1 4.1.9-2.2 3.3-3.6 6.1-4.1-.2 3.6-2.3 6.9-6.1 8.6Z" fill="currentColor"/>
-          </svg>
-        </span>
+        <img class="brand__mark" src="img/logo-icon.webp" alt="" width="128" height="192" />
         <span class="brand__word">Lumos</span>
       </a>
       <nav class="header__nav" aria-label="Glavna navigacija">
@@ -246,14 +294,15 @@
 
     <footer class="footer">
       <div class="wrap footer__grid">
-        <a class="brand" href="index.html">
-          <span class="brand__word">Lumos Požega</span>
+        <a class="brand" href="index.html" aria-label="Lumos Požega">
+          <img class="brand__mark" src="img/logo-icon.webp" alt="" width="128" height="192" />
+          <span class="brand__word">Lumos</span>
         </a>
         <p>© <span id="year">2026</span> Josipa Šumiga. Psihoterapija, savjetovanje, edukacija.</p>
       </div>
     </footer>
 
-    <script src="js/app.js"></script>
+    <script defer src="js/app.js"></script>
     <!-- Sanity CMS — privremeno isključeno
     <script src="js/sanity.js"></script>
     <script src="js/portable-text.js"></script>
