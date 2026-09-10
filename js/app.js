@@ -28,6 +28,27 @@
     if (event.key === "Escape") closeMenu();
   });
 
+  const goToPageTop = (smooth) => {
+    window.scrollTo({ top: 0, behavior: smooth ? "smooth" : "auto" });
+  };
+
+  document.querySelectorAll('a[href="#top"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      closeMenu();
+      goToPageTop(true);
+      history.replaceState(null, "", `${location.pathname}${location.search}`);
+    });
+  });
+
+  if (location.hash === "#top") {
+    goToPageTop(false);
+  }
+
+  window.addEventListener("load", () => {
+    if (location.hash === "#top") goToPageTop(false);
+  });
+
   const onScroll = () => {
     header?.classList.toggle("is-scrolled", window.scrollY > 12);
   };
