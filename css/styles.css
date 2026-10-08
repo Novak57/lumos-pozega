@@ -1065,14 +1065,9 @@ a.post {
   font-size: 0.72rem;
   font-style: normal;
   letter-spacing: 0.02em;
-  white-space: nowrap;
 }
 
-.price-list__sidrena {
-  display: inline;
-}
-
-.price-list li > div:first-child span {
+.price-list span {
   display: block;
   color: var(--muted);
   font-size: 0.86rem;
