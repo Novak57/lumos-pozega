@@ -180,26 +180,29 @@
       .trim();
 
   // Opis iz cjenika + cijena → meta linija usluge
-  // npr. "60 minuta · uživo..." + 50 → "60 minuta · 50 € · uživo..."
+  // npr. "60 minuta - uživo..." + 50 → "60 minuta - 50 € - uživo..."
+  // Separator (· ili -) ostaje onaj iz Sanity opisa.
   const buildServiceMeta = (opis = "", cijena = "") => {
     const price = formatPrice(cijena);
     const raw = String(opis || "").trim();
     if (!raw) return "";
     if (!price) return raw;
 
+    const sepMatch = raw.match(/\s*([·•|–—-])\s*/);
+    const sep = sepMatch ? ` ${sepMatch[1]} ` : " · ";
+
     const parts = raw
-      .replace(/\s*[·•|\uFFFD–—-]+\s*/g, " · ")
-      .split(" · ")
+      .split(/\s*[·•|–—-]+\s*/)
       .map((part) => part.trim())
       .filter((part) => part && !/^\d+[.,]?\d*\s*€?$/i.test(part) && !part.includes("€"));
 
-    if (!parts.length) return `${raw} · ${price}`;
+    if (!parts.length) return `${raw}${sep}${price}`;
 
     const durationIndex = parts.findIndex((part) => /minut/i.test(part));
     const insertAt = durationIndex >= 0 ? durationIndex + 1 : Math.min(1, parts.length);
     const next = [...parts];
     next.splice(insertAt, 0, price);
-    return next.join(" · ");
+    return next.join(sep);
   };
 
   const syncServicePrices = (stavke = []) => {
@@ -240,7 +243,7 @@
             </div>
             <div class="price-list__amount">
               <em class="price-list__cijena">${escapeHtml(cijena)}</em>
-              <small>Sidrena cijena: <span class="price-list__sidrena">${escapeHtml(sidrena)}</span></small>
+              <small>Sidrena cijena (10.09.2026.): <span class="price-list__sidrena">${escapeHtml(sidrena)}</span></small>
             </div>
           </li>`;
         })
