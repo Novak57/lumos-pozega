@@ -37,42 +37,47 @@ export const cjenik = defineType({
               type: "string",
               validation: (rule) => rule.required(),
             }),
-            // Excel kolone — idu u download, ne na stranicu
             defineField({
               name: "kpd",
               title: "KPD oznaka",
               type: "string",
               initialValue: "86.93.00",
             }),
+            // Ostala Excel polja — fiksirana, ne diraju se u CMS-u
             defineField({
               name: "sifra",
               title: "Interna šifra",
               type: "string",
               initialValue: "",
+              hidden: true,
             }),
             defineField({
               name: "jedinica",
               title: "Jed. mjera",
               type: "string",
               initialValue: "sat",
+              hidden: true,
             }),
             defineField({
               name: "kolicina",
               title: "Količina",
               type: "string",
               initialValue: "1",
+              hidden: true,
             }),
             defineField({
               name: "popust",
               title: "Popust",
               type: "string",
               initialValue: "0",
+              hidden: true,
             }),
             defineField({
               name: "porez",
               title: "Porez",
               type: "string",
               initialValue: "0",
+              hidden: true,
             }),
           ],
           preview: {
