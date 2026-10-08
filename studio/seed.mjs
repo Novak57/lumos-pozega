@@ -87,7 +87,7 @@ const cjenik = {
       kpd: "85.59.09",
       sifra: "",
       naziv: "Individualno pedagoško savjetovanje adolescenata",
-      opis: "60 minuta · 16+ · uživo u Požegi ili online",
+      opis: "16+ · 60 minuta · uživo u Požegi ili online",
       jedinica: "sat",
       kolicina: "1",
       cijena: "50",

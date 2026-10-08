@@ -56,7 +56,7 @@
         kpd: "85.59.09",
         sifra: "",
         naziv: "Individualno pedagoško savjetovanje adolescenata",
-        opis: "60 minuta · 16+ · uživo u Požegi ili online",
+        opis: "16+ · 60 minuta · uživo u Požegi ili online",
         jedinica: "sat",
         kolicina: "1",
         cijena: "50",
@@ -172,13 +172,31 @@
     return `${n.replace(/\.0+$/, "").replace(/(\.\d*?)0+$/, "$1")} €`;
   };
 
+  // Opis iz cjenika + cijena → meta linija usluge
+  // npr. "60 minuta · uživo..." + 50 → "60 minuta · 50 € · uživo..."
+  const buildServiceMeta = (opis = "", cijena = "") => {
+    const price = formatPrice(cijena);
+    const parts = String(opis)
+      .split("·")
+      .map((part) => part.trim())
+      .filter(Boolean);
+
+    if (!parts.length) return price;
+    if (!price) return parts.join(" · ");
+
+    const durationIndex = parts.findIndex((part) => /minut/i.test(part));
+    const insertAt = durationIndex >= 0 ? durationIndex + 1 : 1;
+    const next = [...parts];
+    next.splice(insertAt, 0, price);
+    return next.join(" · ");
+  };
+
   const syncServicePrices = (stavke = []) => {
     document.querySelectorAll("[data-cjenik-naziv]").forEach((el) => {
       const naziv = el.getAttribute("data-cjenik-naziv") || "";
       const item = stavke.find((s) => s.naziv === naziv);
       if (!item) return;
-      const price = formatPrice(item.cijena);
-      if (price) el.textContent = price;
+      el.textContent = buildServiceMeta(item.opis, item.cijena);
     });
   };
 
