@@ -45,8 +45,88 @@
     goToPageTop(false);
   }
 
+  // Pri dolasku s druge stranice (blog → #cjenik) browser skoči prerano,
+  // pa slike iznad kasnije gurnu layout. Ručno poravnamo nakon loada.
+  if (location.hash && location.hash !== "#top") {
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  }
+
+  const headerOffset = () => {
+    const h = header?.offsetHeight || 0;
+    return h + 12;
+  };
+
+  const revealHashTarget = () => {
+    const id = location.hash.replace("#", "");
+    if (!id || id === "top") return null;
+    const target = document.getElementById(id);
+    if (!target) return null;
+    target.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible"));
+    target.classList.add("is-visible");
+    return target;
+  };
+
+  const scrollToHash = () => {
+    const target = revealHashTarget();
+    if (!target) return false;
+    const top = window.scrollY + target.getBoundingClientRect().top - headerOffset();
+    window.scrollTo({ top: Math.max(0, top), behavior: "auto" });
+    return true;
+  };
+
+  let hashSettleTimers = [];
+  let hashSettleActive = false;
+
+  const cancelHashSettle = () => {
+    hashSettleTimers.forEach((id) => window.clearTimeout(id));
+    hashSettleTimers = [];
+    hashSettleActive = false;
+  };
+
+  const settleHashScroll = () => {
+    if (!location.hash || location.hash === "#top") return;
+    cancelHashSettle();
+    hashSettleActive = true;
+
+    const delays = [0, 100, 300, 700];
+    delays.forEach((delay) => {
+      hashSettleTimers.push(
+        window.setTimeout(() => {
+          if (!hashSettleActive) return;
+          scrollToHash();
+          if (delay === delays[delays.length - 1]) hashSettleActive = false;
+        }, delay)
+      );
+    });
+  };
+
+  // Čim korisnik sam skrola / swipea, prestani ga vraćati na hash.
+  ["wheel", "touchmove", "pointerdown", "keydown"].forEach((type) => {
+    window.addEventListener(
+      type,
+      () => {
+        if (hashSettleActive) cancelHashSettle();
+      },
+      { passive: true }
+    );
+  });
+
+  window.LumosScrollToHash = settleHashScroll;
+
+  if (location.hash && location.hash !== "#top") {
+    // spriječi "poluskočeni" native jump prije našeg poravnanja
+    window.scrollTo(0, 0);
+    settleHashScroll();
+  }
+
   window.addEventListener("load", () => {
     if (location.hash === "#top") goToPageTop(false);
+    else if (location.hash) settleHashScroll();
+  });
+
+  window.addEventListener("hashchange", () => {
+    if (location.hash === "#top") goToPageTop(true);
+    else settleHashScroll();
   });
 
   const onScroll = () => {

@@ -5,4 +5,6 @@ export default defineCliConfig({
     projectId: "7b3vlfno",
     dataset: "production",
   },
+  // Live Studio: https://lumos-pozega.sanity.studio
+  studioHost: "lumos-pozega",
 });

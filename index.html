@@ -49,16 +49,19 @@
           {
             "@type": "ProfessionalService",
             "@id": "https://novak57.github.io/lumos-pozega/#practice",
-            "name": "Lumos Požega",
+            "name": "LUMOS, obrt za usluge, vl. Josipa Šumiga",
             "url": "https://novak57.github.io/lumos-pozega/",
             "image": "https://novak57.github.io/lumos-pozega/img/og.jpg",
             "logo": "https://novak57.github.io/lumos-pozega/img/logo-icon.webp",
-            "description": "Psihoterapija, savjetovanje i edukacija u Požegi. Rad Josipe Šumige, utemeljen na realitetnoj terapiji.",
+            "description": "Psihoterapija, savjetovanje i edukacija u Požegi ili online. Rad Josipe Šumige, utemeljen na realitetnoj terapiji.",
             "founder": { "@id": "https://novak57.github.io/lumos-pozega/#josipa" },
             "employee": { "@id": "https://novak57.github.io/lumos-pozega/#josipa" },
             "telephone": "+385992812099",
+            "email": "psihoterapijapozega@gmail.com",
             "address": {
               "@type": "PostalAddress",
+              "streetAddress": "Kneza Mislava 21",
+              "postalCode": "34000",
               "addressLocality": "Požega",
               "addressRegion": "Požeško-slavonska županija",
               "addressCountry": "HR"
@@ -78,13 +81,19 @@
                 {
                   "@type": "Offer",
                   "itemOffered": { "@type": "Service", "name": "Partnerska psihoterapija" },
-                  "price": "75",
+                  "price": "80",
                   "priceCurrency": "EUR"
                 },
                 {
                   "@type": "Offer",
-                  "itemOffered": { "@type": "Service", "name": "Savjetovanje za adolescente" },
+                  "itemOffered": { "@type": "Service", "name": "Individualno pedagoško savjetovanje adolescenata" },
                   "price": "50",
+                  "priceCurrency": "EUR"
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": { "@type": "Service", "name": "Individualna psihoterapija na engleskom jeziku" },
+                  "price": "60",
                   "priceCurrency": "EUR"
                 }
               ]
@@ -154,11 +163,11 @@
         <div class="wrap hero__grid">
           <div class="hero__copy reveal">
             <p class="eyebrow">Psihoterapija · savjetovanje · edukacija</p>
-            <h1>Temelj mentalnog zdravlja je dobra <em>povezanost</em> s drugima.</h1>
+            <h1>Gdje god ideš,<br /><em>sebe</em> nosiš sa sobom.</h1>
             <p class="hero__lead">
-              Lumos Požega. Rad Josipe Šumige, licencirane psihoterapeutkinje,
-              utemeljen na realitetnoj terapiji — prostoru u kojem biraš
-              odgovornost za vlastitu sreću, uz podršku.
+              <strong>Dobrodošli u Lumos.</strong>
+              U Lumosu stvaramo prostor za razumijevanje, promjenu i kvalitetnije
+              odnose prema sebi i drugima.
             </p>
             <div class="hero__actions">
               <a class="btn" href="#usluge">Pogledaj usluge</a>
@@ -216,36 +225,40 @@
             <ul class="chips">
               <li>Pedagoginja</li>
               <li>Mag. anglistike</li>
-              <li>Požega</li>
+              <li>HKPT</li>
             </ul>
           </div>
           <div class="about__text reveal">
             <p class="eyebrow">O meni</p>
-            <h2>Tko sam ja, osim profesije.</h2>
+            <h2>Iza Lumosa</h2>
             <p>
-              Ja sam Josipa Šumiga. Licencirana psihoterapeutkinja, pedagoginja
-              i mag. anglistike. U privatnim ulogama — supruga, mama male djevojčice,
-              vlasnica crne mace i crnog psa, prijateljica, kći i kuma.
+              Ja sam Josipa Šumiga, licencirana psihoterapeutkinja, pedagoginja
+              i magistrica anglistike.
             </p>
             <p>
-              Edukaciju iz realitetne terapije započela sam 2014., a s klijentima
-              radim od 2019. Licencirana sam psihoterapeutkinja (HKPT).
-              Radim s ljudima koji se suočavaju s teškoćama mentalnog zdravlja
-              i izazovima u različitim životnim ulogama: partnerskoj, obiteljskoj,
-              roditeljskoj i poslovnoj.
+              U privatnim ulogama sam supruga, mama, prijateljica, kći, kuma i
+              ponosna vlasnica crne mace i crnog psa. Vjerujem da su upravo
+              kvalitetni odnosi jedan od najvažnijih temelja mentalnog zdravlja,
+              a da promjena započinje onda kada osvijestimo kako biramo živjeti
+              i odnositi se prema sebi i drugima.
             </p>
             <p>
-              Često pratim simptome anksioznosti, panične napadaje, depresivne
-              simptome i samoozljeđivanje. Odraslima nudim individualnu i
-              partnersku psihoterapiju, a adolescentima starijima od 16 godina
-              individualno savjetovanje.
-            </p>
-            <p>
-              Cilj mi je dijeliti razmišljanja i razbijati stigmu oko psihoterapije
-              i mentalnog zdravlja. Ako te ove teme zanimaju — dobrodošao,
-              dobrodošla.
+              U svom radu pružam podršku odraslima koji se suočavaju s različitim
+              oblicima nesretnosti — bilo da se ona očituje kroz anksioznost,
+              panične napadaje, depresivne simptome ili izazove u poslovnim,
+              partnerskim, obiteljskim i roditeljskim odnosima. Mladima starijima
+              od 16 godina pružam individualno savjetovanje.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section class="education" id="obrazovanje">
+        <div class="wrap">
+          <div class="education__intro reveal">
+            <h2>Obrazovanje i usavršavanja</h2>
+          </div>
+          <ol class="education__list reveal" id="education-list"></ol>
         </div>
       </section>
 
@@ -254,52 +267,64 @@
           <div class="approach__intro reveal">
             <div>
               <p class="eyebrow">Pristup</p>
-              <h2>Realitetna terapija, prema Williamu Glasseru.</h2>
+              <h2>Temelji mog rada</h2>
             </div>
             <p>
-              Vjerujem da je temelj mentalnog zdravlja dobra povezanost s drugima,
-              uz uvjerenje da smo slobodna bića odgovorna za vlastitu sreću
-              i zadovoljstvo. Svaka osoba može kontrolirati samo vlastito
-              ponašanje — i baš tu počinje promjena.
+              Realitetna terapija, čiji je začetnik William Glasser, polazi od
+              ideje da mentalno zdravlje ne proizlazi iz savršeno posloženih
+              okolnosti, nego iz načina na koji zadovoljavamo svoje potrebe kroz
+              odnose i izbore. Zajedno istražujemo ono što danas možete učiniti
+              drugačije, umjesto da ostanemo zarobljeni u onome što nije moguće
+              promijeniti.
             </p>
           </div>
           <div class="principles">
             <article class="principle reveal">
-              <span>01</span>
+              <span class="principle__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M9 21h6v-1.5H9V21Zm3-19a6 6 0 0 0-3.5 10.9V16h7v-3.1A6 6 0 0 0 12 2Zm2 12.2V14.5h-4v-.3A7.5 7.5 0 0 1 9.2 13a4.5 4.5 0 1 1 5.6 0c-.5.4-.9.8-1.4 1.2Z"/></svg>
+              </span>
               <h3>Povezanost</h3>
               <p>
-                Mentalno zdravlje raste tamo gdje se osjećamo viđeni. Terapija je
-                odnos u kojem učimo kako se povezivati — sa sobom i s drugima —
-                i kad je teško.
+                U realitetnoj terapiji vjerujemo da su kvalitetni odnosi temelj
+                mentalnog zdravlja. Zato je terapija prije svega odnos u kojem
+                kroz povjerenje, prihvaćanje i autentican susret promjena postaje
+                moguća.
               </p>
             </article>
             <article class="principle reveal">
-              <span>02</span>
+              <span class="principle__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M9 21h6v-1.5H9V21Zm3-19a6 6 0 0 0-3.5 10.9V16h7v-3.1A6 6 0 0 0 12 2Zm2 12.2V14.5h-4v-.3A7.5 7.5 0 0 1 9.2 13a4.5 4.5 0 1 1 5.6 0c-.5.4-.9.8-1.4 1.2Z"/></svg>
+              </span>
               <h3>Odgovornost</h3>
               <p>
-                Nisam tu da preuzmem tvoj život. Tu sam da budem uz tebe dok
-                preuzimaš odgovornost za izbore koji te približavaju životu
-                kakav želiš.
+                Ne možemo kontrolirati druge ljude ni okolnosti koje nam život
+                donosi. One na nas utječu, kao što i mi utječemo na druge.
+                Odgovornost podrazumijeva prepoznati da ne biramo uvijek što će
+                nam se dogoditi, ali biramo kako ćemo na to odgovoriti.
               </p>
             </article>
             <article class="principle reveal">
-              <span>03</span>
+              <span class="principle__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M9 21h6v-1.5H9V21Zm3-19a6 6 0 0 0-3.5 10.9V16h7v-3.1A6 6 0 0 0 12 2Zm2 12.2V14.5h-4v-.3A7.5 7.5 0 0 1 9.2 13a4.5 4.5 0 1 1 5.6 0c-.5.4-.9.8-1.4 1.2Z"/></svg>
+              </span>
               <h3>Sloboda izbora</h3>
               <p>
-                Ne možemo birati sve što nam se događa. Možemo birati što ćemo
-                s time učiniti. Terapija je vježba te slobode, bez osude.
+                Sloboda izbora ne znači da je svaki izbor lagan. Ona znači da
+                i u teškim trenucima možemo tražiti mogućnosti umjesto
+                bespomoćnosti. Upravo u tim malim, svakodnevnim izborima često
+                započinje najveća promjena.
               </p>
             </article>
           </div>
-          <aside class="approach__tool reveal">
-            <p class="eyebrow">Alat u radu</p>
-            <h3>Asocijativne karte</h3>
-            <p>
-              Jedan od alata koje koristim. Ponekad znamo kako se osjećamo, ali
-              ne znamo to izraziti — slika, simbol ili detalj može pomoći da se
-              to osvijesti.
+          <aside class="approach__highlight reveal">
+            <p class="approach__highlight-lead">
+              Cilj terapije nije život bez frustracije.
             </p>
-            <a class="textlink" href="blog.html#karte">Pročitaj cijeli zapis</a>
+            <p>
+              Ona je neizbježan dio života. Bez nje ne bi bilo ni rasta. Cilj je
+              naučiti upravljati frustracijom tako da ona ne upravlja nama, nego
+              da postane prilika za učenje i promjenu.
+            </p>
           </aside>
         </div>
       </section>
@@ -307,17 +332,22 @@
       <section class="focus">
         <div class="wrap">
           <div class="focus__inner reveal">
-            <p class="eyebrow">S čime radim</p>
-            <h2>Teme s kojima se često susrećemo.</h2>
+            <p class="eyebrow">Područja rada</p>
+            <h2>Teškoće s kojima se najčešće susrećem</h2>
             <ul class="tags">
               <li>Anksioznost</li>
               <li>Panični napadaji</li>
               <li>Depresivni simptomi</li>
+              <li>Strahovi</li>
+              <li>Traumatska iskustva</li>
+              <li>Emocionalna regulacija</li>
+              <li>Nedostatak samopouzdanja</li>
+              <li>Intruzivne misli</li>
               <li>Samoozljeđivanje</li>
+              <li>Ovisnosti</li>
               <li>Partnerski odnosi</li>
               <li>Obitelj i roditeljstvo</li>
-              <li>Poslovne uloge</li>
-              <li>Povezanost sa sobom</li>
+              <li>Poteškoće u radnom okruženju</li>
             </ul>
           </div>
         </div>
@@ -326,7 +356,6 @@
       <section class="services" id="usluge">
         <div class="wrap">
           <div class="section-head reveal">
-            <p class="eyebrow">Što nudim</p>
             <h2>Usluge</h2>
           </div>
           <div class="cards">
@@ -335,18 +364,18 @@
                 <img src="img/service-individual.webp" alt="Individualni rad u prostoru prakse" width="556" height="837" loading="lazy" decoding="async" />
               </figure>
               <div class="card__body">
-                <p class="card__meta">60 min · 50 €</p>
+                <p class="card__meta">60 minuta · <span data-cjenik-naziv="Individualna psihoterapija">50 €</span> · uživo u Požegi ili online</p>
                 <h3>Individualna psihoterapija</h3>
                 <p>
-                  Terapija nije mjesto na kojem predaješ svoj život u tuđe ruke.
-                  To je prostor u kojem se susrećeš sa sobom — sa svojim
-                  ponašanjima, uvjerenjima i izborima.
+                  Individualna psihoterapija namijenjena je odraslima koji žele
+                  bolje razumjeti sebe, svoje odnose i obrasce ponašanja. Kroz
+                  razgovor gradimo odnos povjerenja u kojem zajedno istražujemo
+                  teškoće, potrebe i mogućnosti novih izbora.
                 </p>
                 <p>
-                  Ti si 100&nbsp;% svoj odnos prema sebi. Tu sam na strani tog
-                  odnosa, ako je to nešto u što želiš ulagati. Učimo preuzeti
-                  odgovornost za vlastito ponašanje i krenuti od onoga što možeš
-                  birati.
+                  Ne nudim gotova rješenja niti dajem savjete kako biste trebali
+                  živjeti. Vjerujem da svaka osoba već posjeduje potencijal za
+                  promjenu, a moja je uloga pomoći vam da ga prepoznate i razvijete.
                 </p>
               </div>
             </article>
@@ -356,18 +385,19 @@
                 <img src="img/service-partners.webp" alt="Partnerski rad u terapijskom prostoru" width="557" height="832" loading="lazy" decoding="async" />
               </figure>
               <div class="card__body">
-                <p class="card__meta">90 min · 75 €</p>
+                <p class="card__meta">75 minuta · <span data-cjenik-naziv="Partnerska psihoterapija (75min)">80 €</span> · uživo u Požegi ili online</p>
                 <h3>Partnerska psihoterapija</h3>
                 <p>
-                  Odnos nije 50–50. Svaki partner je 100&nbsp;% svoj odnos, sa
-                  svojim ponašanjima i uvjerenjima. Terapija nije sudnica — ja sam
-                  na strani vašeg odnosa, ako je to nešto u što oboje želite ulagati.
+                  Partnerska psihoterapija namijenjena je parovima koji žele
+                  bolje razumjeti obrasce u svom odnosu, obnoviti povjerenje i
+                  naučiti razgovarati na način koji povezuje, a ne udaljava.
                 </p>
                 <p>
-                  Učimo preuzeti odgovornost za vlastito ponašanje, čuti drugoga
-                  i povezivati se uz razlike. Uspješan odnos nije onaj bez
-                  frustracija, nego onaj u kojem partneri žele zajedno tražiti
-                  rješenja i spremni su u tome poći od sebe.
+                  Moja uloga nije odlučiti tko je u pravu. Ne zauzimam stranu
+                  ni jednog partnera. Na strani sam vašeg odnosa i onoga što
+                  želite izgraditi zajedno. U terapiji istražujemo kako svatko
+                  od vas doprinosi odnosu te kako kroz razumijevanje, odgovornost
+                  i otvoren dijalog možete graditi kvalitetniji odnos.
                 </p>
               </div>
             </article>
@@ -377,17 +407,22 @@
                 <img src="img/service-adolescents.webp" alt="Slaganje dijela puzzlea u savjetovališnom radu" width="557" height="832" loading="lazy" decoding="async" />
               </figure>
               <div class="card__body">
-                <p class="card__meta">16+ · 60 min · 50 €</p>
-                <h3>Savjetovanje za adolescente</h3>
+                <p class="card__meta">16+ · 60 minuta · <span data-cjenik-naziv="Individualno pedagoško savjetovanje adolescenata">50 €</span> · uživo u Požegi ili online</p>
+                <h3>Individualno pedagoško savjetovanje adolescenata</h3>
                 <p>
-                  Razdoblje nakon šesnaeste godine često nosi pitanja identiteta,
-                  odnosa, škole i obitelji. Individualno savjetovanje prostor je
-                  u kojem mlada osoba može govoriti bez ocjene.
+                  Namijenjeno mladima starijima od 16 godina koji se suočavaju s
+                  anksioznošću, teškoćama u emocionalnoj regulaciji, problemima
+                  u odnosima, padom samopouzdanja ili izazovima odrastanja.
                 </p>
                 <p>
-                  Pratimo tjeskobu, pad raspoloženja i teškoće u odnosima. Radimo
-                  na onome što može kontrolirati — vlastito ponašanje — i na
-                  povezivanju koje ne boli.
+                  <strong>Važno je znati:</strong> prvom susretu obavezno
+                  prisustvuje roditelj ili zakonski skrbnik, koji potpisuje
+                  suglasnost za savjetovanje. Daljnji rad odvija se individualno
+                  s adolescentom, a roditelje uključujem po potrebi i u skladu
+                  s ciljevima savjetovanja.
+                </p>
+                <p class="card__callout">
+                  Ne radim s djecom mlađom od 16 godina.
                 </p>
               </div>
             </article>
@@ -399,34 +434,14 @@
         <div class="wrap">
           <div class="pricing__card reveal">
             <p class="eyebrow">Cjenik usluga</p>
-            <h2>Cijene</h2>
-            <ul class="price-list">
-              <li>
-                <div>
-                  <strong>Individualna psihoterapija</strong>
-                  <span>60 minuta</span>
-                </div>
-                <em>50 €</em>
-              </li>
-              <li>
-                <div>
-                  <strong>Individualno savjetovanje · adolescenti</strong>
-                  <span>60 minuta</span>
-                </div>
-                <em>50 €</em>
-              </li>
-              <li>
-                <div>
-                  <strong>Partnerska psihoterapija</strong>
-                  <span>90 minuta</span>
-                </div>
-                <em>75 €</em>
-              </li>
-            </ul>
-            <p class="pricing__note">
-              Za postojeće klijente cijena ostaje dogovorena. Novi cjenik vrijedi
-              za nove dogovore.
+            <h2>Cjenik</h2>
+            <ul class="price-list" id="price-list"></ul>
+            <p class="pricing__download">
+              <button class="textlink" type="button" id="cjenik-download">
+                Preuzmi cjenik (Excel)
+              </button>
             </p>
+            <div class="pricing__notes"></div>
           </div>
         </div>
       </section>
@@ -437,30 +452,12 @@
             <p class="eyebrow">Blog</p>
             <h2>Razmišljanja</h2>
           </div>
-          <div class="posts">
-            <a class="post reveal" href="blog.html#odnos">
-              <p class="post__date">Odnosi</p>
-              <h3>Partnerska terapija nije sudnica</h3>
-              <p>
-                Odnos nije samo dvoje ljudi koji su u interakciji ili 50&nbsp;% ja,
-                50&nbsp;% ti. Moj odnos sam 100&nbsp;% ja sa svojim ponašanjima
-                i uvjerenjima…
-              </p>
-              <span class="textlink">Pročitaj</span>
-            </a>
-            <a class="post reveal" href="blog.html#rasprava">
-              <p class="post__date">Komunikacija</p>
-              <h3>Što zapravo znači pobijediti u raspravi s partnerom?</h3>
-              <p>
-                U partnerskom konfliktu često slušamo kako bismo odgovorili,
-                obranili se ili dokazali da smo u pravu…
-              </p>
-              <span class="textlink">Pročitaj</span>
-            </a>
+          <div class="posts" id="blog-preview">
+            <div class="blog-empty reveal">
+              <p>Još nema objava. Novi zapisi stižu uskoro.</p>
+              <a class="textlink" href="blog.html">Otvori blog</a>
+            </div>
           </div>
-          <p class="blog-more reveal">
-            <a class="textlink" href="blog.html">Pročitaj još razmišljanja</a>
-          </p>
         </div>
       </section>
 
@@ -470,13 +467,15 @@
             <p class="eyebrow">Kontakt</p>
             <h2>Kontaktirajte me</h2>
             <p>
-              Za upite i dogovor termina popunite obrazac ili mi pišite na
+              Za upite i dogovor termina popunite obrazac ili mi pišite na WhatsApp.
+            </p>
+            <p class="contact__cta">
               <a
+                class="btn btn--light"
                 href="https://wa.me/385992812099"
                 target="_blank"
                 rel="noopener noreferrer"
-              >WhatsApp</a>.
-              Radim u Požegi, s odraslima i adolescentima starijima od 16 godina.
+              >Javi mi se na WhatsApp</a>
             </p>
             <dl class="contact__meta">
               <div>
@@ -491,16 +490,18 @@
                 </dd>
               </div>
               <div>
-                <dt>Praksa</dt>
-                <dd>Lumos · Požega</dd>
+                <dt>E-mail</dt>
+                <dd>
+                  <a href="mailto:psihoterapijapozega@gmail.com">psihoterapijapozega@gmail.com</a>
+                </dd>
               </div>
               <div>
-                <dt>Struka</dt>
-                <dd>Licencirana psihoterapeutkinja, HKPT</dd>
+                <dt>Lokacija</dt>
+                <dd>Požega, Hrvatska</dd>
               </div>
               <div>
-                <dt>Pristup</dt>
-                <dd>Realitetna terapija</dd>
+                <dt>Način rada</dt>
+                <dd>Uživo i online</dd>
               </div>
             </dl>
           </div>
@@ -518,6 +519,14 @@
                 <span>Poruka</span>
                 <textarea name="message" rows="5" required></textarea>
               </label>
+              <label class="contact-form__consent">
+                <input type="checkbox" name="privacy" value="1" required />
+                <span>
+                  Pročitao/la sam
+                  <a href="politika-privatnosti.html">Politiku privatnosti</a>
+                  i pristajem na obradu osobnih podataka u svrhu odgovora na moj upit.
+                </span>
+              </label>
               <input type="text" name="_gotcha" class="contact-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
               <button class="btn btn--light" type="submit">Pošalji upit</button>
               <p class="contact-form__status" id="contact-status" hidden role="status" aria-live="polite"></p>
@@ -532,21 +541,48 @@
         <div class="footer__main">
           <div class="footer__brand">
             <a class="brand" href="#top" aria-label="Lumos Požega">
-              <img class="brand__mark" src="img/logo-icon.webp" alt="" width="128" height="192" loading="lazy" decoding="async" />
+              <span class="brand__mark-wrap">
+                <img class="brand__mark" src="img/logo-icon.webp" alt="" width="128" height="192" loading="lazy" decoding="async" />
+              </span>
               <span class="brand__word">Lumos</span>
             </a>
-            <p>Psihoterapija, savjetovanje i edukacija u Požegi. Prostor u kojem biraš odgovornost za vlastitu sreću, uz podršku.</p>
-            <a
-              class="footer__social"
-              href="https://wa.me/385992812099"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp: 099 281 2099"
-            >
-              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
-                <path fill="currentColor" d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.02Zm-7.01 15.24h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.25-8.24 8.25Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.10-.23-.17-.48-.29Z"/>
-              </svg>
-            </a>
+            <p class="footer__tagline">Psihoterapija, savjetovanje i edukacija — Požega ili online.</p>
+            <p class="footer__legal-name">Lumos, obrt za usluge, vl. Josipa Šumiga</p>
+            <div class="footer__socials">
+              <a
+                class="footer__social"
+                href="https://wa.me/385992812099"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp: 099 281 2099"
+              >
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                  <path fill="currentColor" d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.02Zm-7.01 15.24h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.25-8.24 8.25Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.10-.23-.17-.48-.29Z"/>
+                </svg>
+              </a>
+              <a
+                class="footer__social"
+                href="https://www.instagram.com/lumospozega/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram @lumospozega"
+              >
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                  <path fill="currentColor" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6Zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>
+                </svg>
+              </a>
+              <a
+                class="footer__social"
+                href="https://www.facebook.com/psihoterapijapozega/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook: Lumos Požega"
+              >
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                  <path fill="currentColor" d="M14 8.2h2.2V5h-2.2C11.9 5 11 6.2 11 8.3V10H9v3.2h2V20h3.2v-6.8H16L16.5 10H14.2V8.5c0-.2.2-.3.5-.3H16Z"/>
+                </svg>
+              </a>
+            </div>
           </div>
           <nav class="footer__nav" aria-label="Navigacija u podnožju">
             <p class="footer__heading">Navigacija</p>
@@ -558,6 +594,7 @@
               <li><a href="#cjenik">Cjenik</a></li>
               <li><a href="blog.html">Blog</a></li>
               <li><a href="#kontakt">Kontakt</a></li>
+              <li><a href="politika-privatnosti.html">Politika privatnosti</a></li>
             </ul>
           </nav>
           <div class="footer__contact">
@@ -567,7 +604,7 @@
                 <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
                   <path fill="currentColor" d="M12 2.25A7.25 7.25 0 0 0 4.75 9.5c0 4.54 5.4 10.2 6.86 11.7a.6.6 0 0 0 .78 0c1.46-1.5 6.86-7.16 6.86-11.7A7.25 7.25 0 0 0 12 2.25Zm0 9.75a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/>
                 </svg>
-                Lumos · Požega
+                Požega, Hrvatska
               </li>
               <li>
                 <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
@@ -577,26 +614,35 @@
               </li>
               <li>
                 <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
-                  <path fill="currentColor" d="M12 2 4.5 5.4v6.3c0 4.8 3.3 9.2 7.5 10.5 4.2-1.3 7.5-5.7 7.5-10.5V5.4L12 2Zm-1.15 13.15-3.1-3.1 1.4-1.4 1.7 1.7 4.25-4.25 1.4 1.4-5.65 5.65Z"/>
+                  <path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/>
                 </svg>
-                Licencirana psihoterapeutkinja, HKPT
+                <a href="mailto:psihoterapijapozega@gmail.com">psihoterapijapozega@gmail.com</a>
               </li>
             </ul>
           </div>
         </div>
+        <div class="footer__impressum">
+          <p class="footer__heading">Podaci o obrtu</p>
+          <p><strong>LUMOS, obrt za usluge, vl. Josipa Šumiga</strong></p>
+          <p>Vlasnica: Josipa Šumiga</p>
+          <p>Sjedište: Kneza Mislava 21, 34000 Požega, Hrvatska</p>
+          <p>OIB: 45861169974</p>
+          <p>E-mail: <a href="mailto:psihoterapijapozega@gmail.com">psihoterapijapozega@gmail.com</a> · Tel: <a href="https://wa.me/385992812099" target="_blank" rel="noopener noreferrer">099 281 2099</a></p>
+          <p>Licencirana psihoterapeutkinja, HKPT</p>
+        </div>
         <div class="footer__bar">
           <p>© <span id="year">2026</span> Josipa Šumiga. Sva prava pridržana.</p>
-          <p>Lumos · Požega · 099 281 2099</p>
+          <p><a href="politika-privatnosti.html">Politika privatnosti</a> · <a href="#cjenik">Cjenik</a> · <a href="#kontakt">Kontakt</a></p>
         </div>
       </div>
     </footer>
 
     <script defer src="js/site-config.js"></script>
-    <script defer src="js/contact-form.js"></script>
     <script defer src="js/app.js"></script>
-    <!-- Sanity CMS — privremeno isključeno
-    <script src="js/sanity.js"></script>
-    <script src="js/blog-preview.js"></script>
-    -->
+    <script defer src="js/sanity.js"></script>
+    <script defer src="js/portable-text.js"></script>
+    <script defer src="js/content.js"></script>
+    <script defer src="js/contact-form.js"></script>
+    <script defer src="js/cjenik-download.js"></script>
   </body>
 </html>

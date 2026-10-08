@@ -12,35 +12,6 @@ export const post = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "slug",
-      title: "Slug (URL)",
-      type: "slug",
-      options: { source: "title", maxLength: 96 },
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "category",
-      title: "Kategorija",
-      type: "string",
-      description: 'Npr. "O odnosima" ili "O terapiji"',
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "excerpt",
-      title: "Kratki uvod",
-      type: "text",
-      rows: 3,
-      description: "Prikazuje se na početnoj stranici i u pregledu.",
-      validation: (rule) => rule.required().max(280),
-    }),
-    defineField({
-      name: "publishedAt",
-      title: "Datum objave",
-      type: "datetime",
-      initialValue: () => new Date().toISOString(),
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
       name: "body",
       title: "Tekst",
       type: "array",
@@ -71,7 +42,10 @@ export const post = defineType({
                     type: "url",
                     title: "URL",
                     validation: (rule) =>
-                      rule.uri({ allowRelative: true, scheme: ["http", "https", "mailto"] }),
+                      rule.uri({
+                        allowRelative: true,
+                        scheme: ["http", "https", "mailto"],
+                      }),
                   },
                 ],
               },
@@ -80,6 +54,15 @@ export const post = defineType({
         },
       ],
       validation: (rule) => rule.required(),
+    }),
+    // Automatski pri kreiranju — ona ovo ne vidi / ne bira
+    defineField({
+      name: "publishedAt",
+      title: "Datum objave",
+      type: "datetime",
+      initialValue: () => new Date().toISOString(),
+      hidden: true,
+      readOnly: true,
     }),
   ],
   orderings: [
@@ -92,15 +75,14 @@ export const post = defineType({
   preview: {
     select: {
       title: "title",
-      subtitle: "category",
       date: "publishedAt",
     },
-    prepare({ title, subtitle, date }) {
+    prepare({ title, date }) {
       return {
-        title,
+        title: title || "Bez naslova",
         subtitle: date
-          ? `${subtitle || ""} · ${new Date(date).toLocaleDateString("hr-HR")}`
-          : subtitle,
+          ? new Date(date).toLocaleDateString("hr-HR")
+          : "Nova objava",
       };
     },
   },

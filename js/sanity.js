@@ -1,20 +1,19 @@
 window.LumosSanity = {
-  // true = blog vuče sadržaj iz Sanityja
-  // false = koristi hardkodirane tekstove u HTML-u
-  enabled: false,
+  enabled: true,
   projectId: "7b3vlfno",
   dataset: "production",
   apiVersion: "2025-01-01",
 };
 
 window.LumosSanity.queryUrl = function queryUrl(groq) {
-  const base = `https://${this.projectId}.apicdn.sanity.io/v${this.apiVersion}/data/query/${this.dataset}`;
+  // api. (ne apicdn.) — bez CDN keša, da CMS promjene odmah budu na stranici
+  const base = `https://${this.projectId}.api.sanity.io/v${this.apiVersion}/data/query/${this.dataset}`;
   return `${base}?query=${encodeURIComponent(groq)}`;
 };
 
 window.LumosSanity.fetchQuery = async function fetchQuery(groq) {
   if (!this.enabled) {
-    throw new Error("Sanity je privremeno isključen.");
+    throw new Error("Sanity je isključen.");
   }
 
   if (location.protocol === "file:") {
@@ -28,5 +27,5 @@ window.LumosSanity.fetchQuery = async function fetchQuery(groq) {
     throw new Error(`Sanity greška (${response.status})`);
   }
   const data = await response.json();
-  return data.result || [];
+  return data.result;
 };

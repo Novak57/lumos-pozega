@@ -21,6 +21,14 @@
       return;
     }
 
+    if (!form.privacy?.checked) {
+      setStatus(
+        "Molimo potvrdite da ste pročitali Politiku privatnosti.",
+        "error"
+      );
+      return;
+    }
+
     const submit = form.querySelector('[type="submit"]');
     submit.disabled = true;
     setStatus("Slanje…", "pending");
