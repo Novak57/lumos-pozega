@@ -172,20 +172,31 @@
     return `${n.replace(/\.0+$/, "").replace(/(\.\d*?)0+$/, "$1")} €`;
   };
 
+  const foldText = (value = "") =>
+    String(value)
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .trim();
+
   // Opis iz cjenika + cijena → meta linija usluge
   // npr. "60 minuta · uživo..." + 50 → "60 minuta · 50 € · uživo..."
   const buildServiceMeta = (opis = "", cijena = "") => {
     const price = formatPrice(cijena);
-    const parts = String(opis)
-      .split("·")
-      .map((part) => part.trim())
-      .filter(Boolean);
+    const raw = String(opis || "").trim();
+    if (!raw) return "";
+    if (!price) return raw;
 
-    if (!parts.length) return price;
-    if (!price) return parts.join(" · ");
+    const parts = raw
+      .replace(/\s*[·•|\uFFFD–—-]+\s*/g, " · ")
+      .split(" · ")
+      .map((part) => part.trim())
+      .filter((part) => part && !/^\d+[.,]?\d*\s*€?$/i.test(part) && !part.includes("€"));
+
+    if (!parts.length) return `${raw} · ${price}`;
 
     const durationIndex = parts.findIndex((part) => /minut/i.test(part));
-    const insertAt = durationIndex >= 0 ? durationIndex + 1 : 1;
+    const insertAt = durationIndex >= 0 ? durationIndex + 1 : Math.min(1, parts.length);
     const next = [...parts];
     next.splice(insertAt, 0, price);
     return next.join(" · ");
@@ -194,9 +205,13 @@
   const syncServicePrices = (stavke = []) => {
     document.querySelectorAll("[data-cjenik-naziv]").forEach((el) => {
       const naziv = el.getAttribute("data-cjenik-naziv") || "";
-      const item = stavke.find((s) => s.naziv === naziv);
+      const item = stavke.find(
+        (s) => s.naziv === naziv || foldText(s.naziv) === foldText(naziv)
+      );
       if (!item) return;
-      el.textContent = buildServiceMeta(item.opis, item.cijena);
+      const meta = buildServiceMeta(item.opis, item.cijena);
+      // Ne prepisuj cijelu liniju samo cijenom ako opis nedostaje.
+      if (meta) el.textContent = meta;
     });
   };
 
