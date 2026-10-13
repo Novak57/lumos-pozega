@@ -74,8 +74,33 @@ body::before {
     radial-gradient(ellipse 40% 30% at 0% 8%, rgba(2, 87, 141, 0.05), transparent 52%);
 }
 
+html.menu-open,
 body.menu-open {
   overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
+body.menu-open {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+body.menu-open .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+body.menu-open .menu {
+  touch-action: pan-y;
+  overscroll-behavior: none;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 h1,

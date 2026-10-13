@@ -6,23 +6,57 @@
 
   if (year) year.textContent = String(new Date().getFullYear());
 
+  let menuScrollY = 0;
+
+  const lockMenuScroll = () => {
+    menuScrollY = window.scrollY || window.pageYOffset || 0;
+    document.documentElement.classList.add("menu-open");
+    document.body.classList.add("menu-open");
+    document.body.style.top = `-${menuScrollY}px`;
+  };
+
+  const unlockMenuScroll = () => {
+    document.documentElement.classList.remove("menu-open");
+    document.body.classList.remove("menu-open");
+    document.body.style.top = "";
+    window.scrollTo(0, menuScrollY);
+  };
+
   const closeMenu = () => {
     if (!drawer || !burger) return;
+    if (drawer.hidden) return;
     drawer.hidden = true;
     burger.setAttribute("aria-expanded", "false");
-    document.body.classList.remove("menu-open");
+    unlockMenuScroll();
+  };
+
+  const openMenu = () => {
+    if (!drawer || !burger) return;
+    burger.setAttribute("aria-expanded", "true");
+    drawer.hidden = false;
+    lockMenuScroll();
   };
 
   burger?.addEventListener("click", () => {
     const open = burger.getAttribute("aria-expanded") === "true";
-    burger.setAttribute("aria-expanded", String(!open));
-    drawer.hidden = open;
-    document.body.classList.toggle("menu-open", !open);
+    if (open) closeMenu();
+    else openMenu();
   });
 
   drawer?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", closeMenu);
   });
+
+  // iOS: spriječi scroll chaining na pozadinu dok je meni otvoren
+  document.addEventListener(
+    "touchmove",
+    (event) => {
+      if (!document.body.classList.contains("menu-open")) return;
+      if (event.target.closest?.(".menu")) return;
+      event.preventDefault();
+    },
+    { passive: false }
+  );
 
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeMenu();
