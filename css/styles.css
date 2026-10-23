@@ -1342,6 +1342,17 @@ a.post {
   margin-bottom: 0.35rem;
 }
 
+.article__figure {
+  margin: 1.6rem 0 1.8rem;
+}
+
+.article__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.35rem;
+}
+
 .article__pager {
   display: grid;
   gap: 1rem;

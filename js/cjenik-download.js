@@ -16,8 +16,10 @@
   ];
 
   const parseAmount = (value = "") => {
-    const match = String(value).replace(/\s/g, "").match(/(\d+[.,]?\d*)/);
-    if (!match) return "";
+    const raw = String(value ?? "").trim();
+    if (!raw) return "";
+    const match = raw.replace(/\s/g, "").match(/^(\d+[.,]?\d*)/);
+    if (!match) return raw;
     return match[1].replace(",", ".");
   };
 
@@ -26,10 +28,12 @@
 
     list.querySelectorAll(":scope > li").forEach((item) => {
       const cijena = parseAmount(
-        item.querySelector(".price-list__cijena")?.textContent
+        item.dataset.cijena ||
+          item.querySelector(".price-list__cijena")?.textContent
       );
       const sidrena = parseAmount(
-        item.querySelector(".price-list__sidrena")?.textContent
+        item.dataset.sidrena ||
+          item.querySelector(".price-list__sidrena")?.textContent
       );
 
       rows.push([

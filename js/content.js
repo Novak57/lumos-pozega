@@ -3,6 +3,7 @@
 
   // Privremeni fallback dok se Sanity ne napuni (npm run seed u studio/).
   const FALLBACK_CJENIK = {
+    sidrenaDatum: "2026-09-10",
     stavke: [
       {
         kpd: "86.93.00",
@@ -12,6 +13,7 @@
         jedinica: "sat",
         kolicina: "1",
         cijena: "50",
+        uEurima: true,
         sidrena: "50",
         popust: "0",
         porez: "0",
@@ -24,6 +26,7 @@
         jedinica: "kom",
         kolicina: "1",
         cijena: "50",
+        uEurima: true,
         sidrena: "50",
         popust: "0",
         porez: "0",
@@ -36,6 +39,7 @@
         jedinica: "kom",
         kolicina: "1",
         cijena: "80",
+        uEurima: true,
         sidrena: "80",
         popust: "0",
         porez: "0",
@@ -48,6 +52,7 @@
         jedinica: "sat",
         kolicina: "1",
         cijena: "60",
+        uEurima: true,
         sidrena: "60",
         popust: "0",
         porez: "0",
@@ -60,6 +65,7 @@
         jedinica: "sat",
         kolicina: "1",
         cijena: "50",
+        uEurima: true,
         sidrena: "50",
         popust: "0",
         porez: "0",
@@ -166,10 +172,23 @@
     };
   };
 
-  const formatPrice = (value) => {
-    const n = String(value ?? "").replace(",", ".").trim();
-    if (!n) return "";
+  // uEurima === false → prikaži tekst kakav jest (npr. „na upit”), bez €
+  const formatPrice = (value, uEurima = true) => {
+    const raw = String(value ?? "").trim();
+    if (!raw) return "";
+    if (uEurima === false) return raw;
+
+    const n = raw.replace(",", ".");
+    if (!/^\d+(\.\d+)?$/.test(n)) return raw;
     return `${n.replace(/\.0+$/, "").replace(/(\.\d*?)0+$/, "$1")} €`;
+  };
+
+  const formatSidrenaDatum = (value) => {
+    if (!value) return "";
+    const parts = String(value).slice(0, 10).split("-");
+    if (parts.length !== 3) return String(value);
+    const [y, m, d] = parts;
+    return `${d}.${m}.${y}.`;
   };
 
   const foldText = (value = "") =>
@@ -182,8 +201,8 @@
   // Opis iz cjenika + cijena → meta linija usluge
   // npr. "60 minuta - uživo..." + 50 → "60 minuta - 50 € - uživo..."
   // Separator (· ili -) ostaje onaj iz Sanity opisa.
-  const buildServiceMeta = (opis = "", cijena = "") => {
-    const price = formatPrice(cijena);
+  const buildServiceMeta = (opis = "", cijena = "", uEurima = true) => {
+    const price = formatPrice(cijena, uEurima);
     const raw = String(opis || "").trim();
     if (!raw) return "";
     if (!price) return raw;
@@ -212,7 +231,7 @@
         (s) => s.naziv === naziv || foldText(s.naziv) === foldText(naziv)
       );
       if (!item) return;
-      const meta = buildServiceMeta(item.opis, item.cijena);
+      const meta = buildServiceMeta(item.opis, item.cijena, item.uEurima);
       // Ne prepisuj cijelu liniju samo cijenom ako opis nedostaje.
       if (meta) el.textContent = meta;
     });
@@ -221,12 +240,23 @@
   const renderCjenik = (data) => {
     const list = document.getElementById("price-list");
     const stavke = data?.stavke || [];
+    const sidrenaDatum = formatSidrenaDatum(data?.sidrenaDatum);
 
     if (list) {
       list.innerHTML = stavke
         .map((item) => {
-          const cijena = formatPrice(item.cijena);
-          const sidrena = formatPrice(item.sidrena || item.cijena);
+          const uEurima = item.uEurima !== false;
+          const cijena = formatPrice(item.cijena, uEurima);
+          const sidrenaRaw = String(item.sidrena ?? "").trim();
+          const sidrena = sidrenaRaw
+            ? formatPrice(sidrenaRaw, uEurima)
+            : "";
+          const sidrenaLabel = sidrenaDatum
+            ? `Sidrena cijena (${sidrenaDatum}):`
+            : "Sidrena cijena:";
+          const sidrenaHtml = sidrena
+            ? `<small>${escapeHtml(sidrenaLabel)} <span class="price-list__sidrena">${escapeHtml(sidrena)}</span></small>`
+            : "";
           return `
           <li
             data-kpd="${escapeHtml(item.kpd || "86.93.00")}"
@@ -234,6 +264,8 @@
             data-naziv="${escapeHtml(item.naziv || "")}"
             data-jedinica="${escapeHtml(item.jedinica || "sat")}"
             data-kolicina="${escapeHtml(item.kolicina || "1")}"
+            data-cijena="${escapeHtml(String(item.cijena ?? "").trim())}"
+            data-sidrena="${escapeHtml(sidrenaRaw)}"
             data-popust="${escapeHtml(item.popust || "0")}"
             data-porez="${escapeHtml(item.porez || "0")}"
           >
@@ -243,7 +275,7 @@
             </div>
             <div class="price-list__amount">
               <em class="price-list__cijena">${escapeHtml(cijena)}</em>
-              <small>Sidrena cijena (10.09.2026.): <span class="price-list__sidrena">${escapeHtml(sidrena)}</span></small>
+              ${sidrenaHtml}
             </div>
           </li>`;
         })
@@ -419,7 +451,14 @@
           (await window.LumosSanity.fetchQuery(`*[_type == "post"] | order(publishedAt desc) {
             title,
             publishedAt,
-            body
+            body[]{
+              ...,
+              _type == "image" => {
+                ...,
+                "url": asset->url,
+                alt
+              }
+            }
           }`)) || [];
 
         if (needsBlogPreview) renderBlogPreview(posts);

@@ -58,6 +58,15 @@
     }
   };
 
+  const renderImage = (block) => {
+    const url = block.url || block.asset?.url;
+    if (!url) return "";
+    const alt = escapeHtml(block.alt || "");
+    return `<figure class="article__figure">
+      <img src="${escapeHtml(url)}" alt="${alt}" loading="lazy" decoding="async" />
+    </figure>`;
+  };
+
   window.portableTextToHtml = (blocks = []) => {
     if (!Array.isArray(blocks) || !blocks.length) return "";
 
@@ -71,6 +80,12 @@
     };
 
     blocks.forEach((block) => {
+      if (block._type === "image") {
+        closeList();
+        html += renderImage(block);
+        return;
+      }
+
       if (block._type !== "block") return;
 
       if (block.listItem) {

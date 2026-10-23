@@ -6,6 +6,14 @@ export const cjenik = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "sidrenaDatum",
+      title: "Datum sidrene cijene",
+      type: "date",
+      description:
+        "Prikazuje se uz sidrenu cijenu na stranici (npr. 10. 9. 2026.).",
+      options: { dateFormat: "DD.MM.YYYY" },
+    }),
+    defineField({
       name: "stavke",
       title: "Stavke cjenika",
       type: "array",
@@ -27,15 +35,26 @@ export const cjenik = defineType({
             }),
             defineField({
               name: "cijena",
-              title: "Cijena (€)",
+              title: "Cijena",
               type: "string",
+              description:
+                'Broj (npr. 50) ili tekst (npr. „na upit”). Znak € dodaje se samo ako je uključeno „U eurima”.',
               validation: (rule) => rule.required(),
             }),
             defineField({
+              name: "uEurima",
+              title: "U eurima",
+              type: "boolean",
+              description:
+                "Uključeno: uz cijenu se prikazuje €. Isključeno za tekstualne cijene (npr. „na upit”).",
+              initialValue: true,
+            }),
+            defineField({
               name: "sidrena",
-              title: "Sidrena cijena (€)",
+              title: "Sidrena cijena",
               type: "string",
-              validation: (rule) => rule.required(),
+              description:
+                "Opcionalno. Ostavi prazno ako nije potrebna (npr. kod „na upit”).",
             }),
             defineField({
               name: "kpd",
@@ -81,11 +100,12 @@ export const cjenik = defineType({
             }),
           ],
           preview: {
-            select: { title: "naziv", subtitle: "cijena" },
-            prepare({ title, subtitle }) {
+            select: { title: "naziv", subtitle: "cijena", uEurima: "uEurima" },
+            prepare({ title, subtitle, uEurima }) {
+              const euro = uEurima !== false && subtitle ? " €" : "";
               return {
                 title: title || "Stavka",
-                subtitle: subtitle ? `${subtitle} €` : "",
+                subtitle: subtitle ? `${subtitle}${euro}` : "",
               };
             },
           },
