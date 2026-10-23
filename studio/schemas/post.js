@@ -56,15 +56,6 @@ export const post = defineType({
           type: "image",
           title: "Slika",
           options: { hotspot: true },
-          fields: [
-            {
-              name: "alt",
-              type: "string",
-              title: "Kratki opis slike",
-              description:
-                "Za pristupačnost — što je na slici (npr. „Radni prostor u Požegi”).",
-            },
-          ],
         },
       ],
       validation: (rule) => rule.required(),
