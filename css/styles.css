@@ -1744,7 +1744,13 @@ a.post {
     align-items: center;
     min-height: calc(100svh - var(--header-h));
     padding-top: 2.4rem;
-    padding-bottom: 3.2rem;
+    /* Sredina sadržaja na ~44 % visine prozora (optička sredina), uz header iznad.
+       Gornja granica (32rem ≈ visina sadržaja) drži hero unutar ekrana na niskim prozorima. */
+    padding-bottom: clamp(
+      3.2rem,
+      calc(var(--header-h) + 2.4rem + 12svh),
+      calc(100svh - var(--header-h) - 2.4rem - 32rem)
+    );
   }
 
   .hero__grid {
