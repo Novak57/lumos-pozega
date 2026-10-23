@@ -3,7 +3,6 @@
 
   // Privremeni fallback dok se Sanity ne napuni (npm run seed u studio/).
   const FALLBACK_CJENIK = {
-    sidrenaDatum: "2026-09-10",
     stavke: [
       {
         kpd: "86.93.00",
@@ -15,6 +14,7 @@
         cijena: "50",
         uEurima: true,
         sidrena: "50",
+        sidrenaDatum: "2026-09-10",
         popust: "0",
         porez: "0",
       },
@@ -28,6 +28,7 @@
         cijena: "50",
         uEurima: true,
         sidrena: "50",
+        sidrenaDatum: "2026-09-10",
         popust: "0",
         porez: "0",
       },
@@ -41,6 +42,7 @@
         cijena: "80",
         uEurima: true,
         sidrena: "80",
+        sidrenaDatum: "2026-09-10",
         popust: "0",
         porez: "0",
       },
@@ -54,6 +56,7 @@
         cijena: "60",
         uEurima: true,
         sidrena: "60",
+        sidrenaDatum: "2026-09-10",
         popust: "0",
         porez: "0",
       },
@@ -67,6 +70,7 @@
         cijena: "50",
         uEurima: true,
         sidrena: "50",
+        sidrenaDatum: "2026-09-10",
         popust: "0",
         porez: "0",
       },
@@ -240,7 +244,8 @@
   const renderCjenik = (data) => {
     const list = document.getElementById("price-list");
     const stavke = data?.stavke || [];
-    const sidrenaDatum = formatSidrenaDatum(data?.sidrenaDatum);
+    // Stari dokumenti: datum na razini cjenika — fallback dok se ne prenese na stavke
+    const legacyDatum = data?.sidrenaDatum;
 
     if (list) {
       list.innerHTML = stavke
@@ -251,6 +256,9 @@
           const sidrena = sidrenaRaw
             ? formatPrice(sidrenaRaw, uEurima)
             : "";
+          const sidrenaDatum = formatSidrenaDatum(
+            item.sidrenaDatum || legacyDatum
+          );
           const sidrenaLabel = sidrenaDatum
             ? `Sidrena cijena (${sidrenaDatum}):`
             : "Sidrena cijena:";

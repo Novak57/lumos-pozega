@@ -29,7 +29,6 @@ const key = () => Math.random().toString(36).slice(2, 10);
 const cjenik = {
   _id: "cjenik",
   _type: "cjenik",
-  sidrenaDatum: "2026-09-10",
   stavke: [
     {
       _key: key(),
@@ -42,6 +41,7 @@ const cjenik = {
       cijena: "50",
       uEurima: true,
       sidrena: "50",
+      sidrenaDatum: "2026-09-10",
       popust: "0",
       porez: "0",
     },
@@ -56,6 +56,7 @@ const cjenik = {
       cijena: "50",
       uEurima: true,
       sidrena: "50",
+      sidrenaDatum: "2026-09-10",
       popust: "0",
       porez: "0",
     },
@@ -70,6 +71,7 @@ const cjenik = {
       cijena: "80",
       uEurima: true,
       sidrena: "80",
+      sidrenaDatum: "2026-09-10",
       popust: "0",
       porez: "0",
     },
@@ -84,6 +86,7 @@ const cjenik = {
       cijena: "60",
       uEurima: true,
       sidrena: "60",
+      sidrenaDatum: "2026-09-10",
       popust: "0",
       porez: "0",
     },
@@ -98,6 +101,7 @@ const cjenik = {
       cijena: "50",
       uEurima: true,
       sidrena: "50",
+      sidrenaDatum: "2026-09-10",
       popust: "0",
       porez: "0",
     },

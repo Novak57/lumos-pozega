@@ -6,14 +6,6 @@ export const cjenik = defineType({
   type: "document",
   fields: [
     defineField({
-      name: "sidrenaDatum",
-      title: "Datum sidrene cijene",
-      type: "date",
-      description:
-        "Prikazuje se uz sidrenu cijenu na stranici (npr. 10. 9. 2026.).",
-      options: { dateFormat: "DD.MM.YYYY" },
-    }),
-    defineField({
       name: "stavke",
       title: "Stavke cjenika",
       type: "array",
@@ -55,6 +47,15 @@ export const cjenik = defineType({
               type: "string",
               description:
                 "Opcionalno. Ostavi prazno ako nije potrebna (npr. kod „na upit”).",
+            }),
+            defineField({
+              name: "sidrenaDatum",
+              title: "Datum sidrene cijene",
+              type: "date",
+              description:
+                "Datum za ovu stavku (npr. kad je usluga uvedena / od kad vrijedi sidrena).",
+              options: { dateFormat: "DD.MM.YYYY" },
+              hidden: ({ parent }) => !parent?.sidrena,
             }),
             defineField({
               name: "kpd",
