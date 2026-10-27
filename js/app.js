@@ -163,8 +163,10 @@
     else settleHashScroll();
   });
 
+  const heroMore = document.querySelector(".hero__more");
   const onScroll = () => {
     header?.classList.toggle("is-scrolled", window.scrollY > 12);
+    heroMore?.classList.toggle("is-away", window.scrollY > 48);
   };
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });

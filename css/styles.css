@@ -408,6 +408,10 @@ svg {
   overflow-x: clip;
 }
 
+.hero__more {
+  display: none;
+}
+
 .hero__grid {
   display: grid;
   gap: 2.4rem;
@@ -521,7 +525,7 @@ svg {
 .hero__card:nth-child(6) img { object-position: 55% 40%; }
 
 .hero__fan.is-open {
-  --spread: 16deg;
+  --spread: 13deg;
 }
 
 .hero__fan.is-open .hero__card {
@@ -530,7 +534,7 @@ svg {
 
 @media (min-width: 900px) {
   .hero__fan:is(:hover, :focus-within):not(.is-peeking) {
-    --spread: 17deg;
+    --spread: 13deg;
   }
 
   .hero__fan:is(:hover, :focus-within):not(.is-peeking) .hero__card {
@@ -553,7 +557,7 @@ svg {
 }
 
 .hero__fan.is-peeking {
-  --spread: 16deg;
+  --spread: 13deg;
 }
 
 .hero__fan.is-peeking .hero__card {
@@ -1743,35 +1747,102 @@ a.post {
     display: grid;
     align-items: center;
     min-height: calc(100svh - var(--header-h));
-    padding-top: 2.4rem;
-    /* Sredina sadržaja na ~44 % visine prozora (optička sredina), uz header iznad.
-       Gornja granica (32rem ≈ visina sadržaja) drži hero unutar ekrana na niskim prozorima. */
+    padding-top: 2rem;
+    /* Optička sredina, ali blaže — sadržaj zauzme više viewporta. */
     padding-bottom: clamp(
-      3.2rem,
-      calc(var(--header-h) + 2.4rem + 12svh),
-      calc(100svh - var(--header-h) - 2.4rem - 32rem)
+      3rem,
+      calc(var(--header-h) + 1.6rem + 7svh),
+      calc(100svh - var(--header-h) - 2rem - 34rem)
     );
+  }
+
+  .hero__more {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(1.15rem, 2.6svh, 1.9rem);
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    transform: translateX(-50%);
+    color: var(--navy);
+    text-decoration: none;
+    border: 1px solid rgba(0, 29, 55, 0.16);
+    border-radius: 999px;
+    background: transparent;
+    animation: hero-more-nudge 2.6s var(--ease) infinite;
+    transition:
+      color 0.25s ease,
+      opacity 0.35s ease,
+      border-color 0.25s ease,
+      background 0.25s ease;
+  }
+
+  .hero__more svg {
+    width: 1.05rem;
+    height: 1.05rem;
+    margin-top: 0.1rem;
+  }
+
+  .hero__more:hover,
+  .hero__more:focus-visible {
+    color: var(--navy);
+    border-color: var(--navy);
+    background: var(--paper);
+  }
+
+  .hero__more:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .hero__more.is-away {
+    opacity: 0;
+    pointer-events: none;
+    animation: none;
+  }
+
+  @keyframes hero-more-nudge {
+    0%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(0.28rem);
+    }
   }
 
   .hero__grid {
     grid-template-columns: 0.92fr 1.08fr;
-    align-items: center;
+    align-items: start;
     gap: 2.4rem;
   }
 
+  .hero__copy {
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+    /* Match the optical top of the fan cards. */
+    padding-top: 0.55rem;
+  }
+
   .hero__hand {
-    min-height: 32rem;
+    min-height: 0;
+    min-width: 0;
+    align-content: start;
   }
 
   .hero__fan {
-    width: 30rem;
-    height: 30rem;
+    width: min(34rem, 100%);
+    height: 29.5rem;
   }
 
   .hero__card {
-    width: 14rem;
-    height: 20.6rem;
-    margin-left: -7rem;
+    width: 15.75rem;
+    height: 23.2rem;
+    margin-left: -7.875rem;
   }
 
   .about__grid {
@@ -1905,33 +1976,33 @@ a.post {
 
 @media (min-width: 1200px) and (min-height: 900px) {
   .hero h1 {
-    font-size: clamp(4.35rem, 7.2vh, 5.6rem);
+    font-size: clamp(4.35rem, 6vh, 5.35rem);
   }
 
   .hero__lead {
-    max-width: 38rem;
-    font-size: 1.12rem;
-  }
-
-  .hero__hand {
-    min-height: 30rem;
+    max-width: 34rem;
+    font-size: 1.1rem;
   }
 
   .hero__fan {
-    width: 35rem;
-    height: 28rem;
+    width: min(36rem, 100%);
+    height: 30.5rem;
   }
 
   .hero__card {
-    width: 16.6rem;
-    height: 24.4rem;
-    margin-left: -8.3rem;
+    width: 16.25rem;
+    height: 24rem;
+    margin-left: -8.125rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .hero__more {
+    animation: none;
   }
 
   .hero__card,
