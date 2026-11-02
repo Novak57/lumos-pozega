@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://novak57.github.io/lumos-pozega/sitemap.xml
+Sitemap: https://psihoterapijapozega.com/sitemap.xml

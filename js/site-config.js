@@ -1,8 +1,8 @@
 window.LumosSite = {
-  // Trenutno GitHub Pages. Kad pređeš na Cloudflare Pages + vlastitu domenu,
-  // zamijeni origin i iste URL-ove u index.html, blog.html, robots.txt, sitemap.xml
-  // te dodaj domenu u Sanity Manage → API → CORS origins.
-  origin: "https://novak57.github.io/lumos-pozega",
+  // Produkcija: Cloudflare Pages + domena psihoterapijapozega.com
+  // Ako mijenjaš domenu, uskladi i: index.html, blog.html, politika-privatnosti.html,
+  // robots.txt, sitemap.xml te Sanity Manage → API → CORS origins.
+  origin: "https://psihoterapijapozega.com",
   // CMS (ona edita ovdje, bez lokalnog setupa):
   studio: "https://lumos-pozega.sanity.studio",
 };
