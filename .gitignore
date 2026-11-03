@@ -1,4 +1,5 @@
 node_modules/
+.venv-favicon/
 studio/node_modules/
 studio/dist/
 studio/.sanity/
