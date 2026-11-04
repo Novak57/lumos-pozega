@@ -58,8 +58,18 @@
     }
   };
 
+  const sizedImageUrl = (url = "") => {
+    if (!url) return "";
+    // Sanity CDN: constrain width so huge assets don't blow out mobile layout.
+    if (url.includes("cdn.sanity.io/images/")) {
+      const join = url.includes("?") ? "&" : "?";
+      return `${url}${join}w=1200&auto=format`;
+    }
+    return url;
+  };
+
   const renderImage = (block) => {
-    const url = block.url || block.asset?.url;
+    const url = sizedImageUrl(block.url || block.asset?.url);
     if (!url) return "";
     const alt = escapeHtml(block.alt || "");
     return `<figure class="article__figure">

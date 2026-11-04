@@ -138,6 +138,10 @@
       .replaceAll(">", "&gt;")
       .replaceAll('"', "&quot;");
 
+  // Soft wrap after / ? ! so long CMS titles don't blow out mobile/sidebar layout.
+  const formatTitleHtml = (value = "") =>
+    escapeHtml(value).replace(/([/?!])/g, "$1&#8203;");
+
   const slugify = (value = "") =>
     String(value)
       .normalize("NFD")
@@ -334,7 +338,7 @@
         const post = normalizePost(raw);
         return `
         <a class="post reveal is-visible" href="blog.html#${escapeHtml(post.slug)}">
-          <h3>${escapeHtml(post.title)}</h3>
+          <h3>${formatTitleHtml(post.title)}</h3>
           <p>${escapeHtml(post.excerpt)}</p>
           <span class="textlink">Pročitaj na blogu</span>
         </a>`;
@@ -382,7 +386,7 @@
           (post) => `
           <li>
             <a href="#${escapeHtml(post.slug)}">
-              ${escapeHtml(post.title)}
+              ${formatTitleHtml(post.title)}
             </a>
           </li>`
         )
@@ -402,21 +406,21 @@
           ? `<nav class="article__pager" aria-label="Sljedeći zapis">
               <a href="#${escapeHtml(next.slug)}">
                 <span>Sljedeći zapis</span>
-                ${escapeHtml(next.title)}
+                ${formatTitleHtml(next.title)}
               </a>
             </nav>`
           : prev
             ? `<nav class="article__pager" aria-label="Prethodni zapis">
                 <a class="article__pager--prev" href="#${escapeHtml(prev.slug)}">
                   <span>Prethodni zapis</span>
-                  ${escapeHtml(prev.title)}
+                  ${formatTitleHtml(prev.title)}
                 </a>
               </nav>`
             : "";
 
         return `
           <article class="article reveal is-visible" id="${escapeHtml(post.slug)}">
-            <h2>${escapeHtml(post.title)}</h2>
+            <h2>${formatTitleHtml(post.title)}</h2>
             <div class="article__body">
               ${toHtml(post.body)}
             </div>
